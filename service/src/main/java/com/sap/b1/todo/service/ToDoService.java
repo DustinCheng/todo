@@ -28,10 +28,6 @@ import com.sap.cloud.sdk.service.prov.api.request.ReadRequest;
 import com.sap.cloud.sdk.service.prov.api.response.QueryResponse;
 import com.sap.cloud.sdk.service.prov.api.response.ReadResponse; 
 
-/**
- *
- * @author I070911
- */
 public class ToDoService {
 	private static Logger logger = LoggerFactory.getLogger(ToDoService.class);
 	
