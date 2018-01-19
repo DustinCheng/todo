@@ -1,0 +1,29 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic" xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" controllerName="com.sap.b1.ui.controller.Object">
+
+<ObjectHeader title="{title}" introActive="true" titleActive="true" id="__header0" cd:w5g.dt.context="/Task"/>
+
+<sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" xmlns:sap.ui.core="sap.ui.core" editable="true" layout="ResponsiveGridLayout" id="__form0">
+
+    <sap.ui.layout.form:content>
+
+        <sap.ui.core:Title text="Status &amp; Notes" id="__title0"/>
+
+        <Label text="Status" id="__label0"/>
+
+        <RadioButtonGroup width="100%" columns="2" selectedIndex="{status}" id="__group0" cd:w5g.dt.context="/Task">
+
+            <buttons>
+
+                <RadioButton selected="true" groupName="__group0" text="New" id="__button0"/>
+
+                <RadioButton groupName="__group0" text="Completed" id="__button1"/></buttons>
+
+        </RadioButtonGroup>
+
+        <Label text="Notes" id="__label1"/>
+
+        <Input width="100%" id="value" cd:w5g.dt.context="/Task" value="{note}"/></sap.ui.layout.form:content>
+
+</sap.ui.layout.form:SimpleForm>
+
+</mvc:View>

@@ -25,6 +25,24 @@ modules:
          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
             {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
 
+
+ - name: ui
+   type: html5
+   path: ui
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   build-parameters:
+      builder: grunt
+   requires:
+    - name: service_api
+      group: destinations
+      properties:
+         forwardAuthToken: true
+         strictSSL: false
+         name: service_api
+         url: ~{url}
+
 resources:
  - name: hdi_hdb
    properties:
