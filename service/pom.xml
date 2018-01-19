@@ -1,18 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>java</artifactId>
-	<groupId>com.company.todo</groupId>
+	<groupId>com.sap.b1.todo</groupId>
+	<artifactId>service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Gateway Runtime Reference Content: Java Project for DevX</name>
-	<properties>
-		<sap.gateway.version>1.7.2</sap.gateway.version>
-		<slf4j.version>1.7.7</slf4j.version>
-	</properties>
+	<name>This archetype enables OData V4 service development and contains aggregated dependencies for consuming OData V2 and CDS data sources.</name>
 	<build>
-		<finalName>${project.artifactId}-${project.version}</finalName>
+		<finalName>service</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -42,9 +37,9 @@
 							<name>.factorypath</name>
 							<content>
 								<![CDATA[<factorypath><factorypathentry
-	kind="VARJAR" id="M2_REPO/com/sap/cloud/sdk/service/prov/annotation-processor/${cxs.version}/annotation-processor-${cxs.version}.jar"
-	enabled="true" runInBatchMode="false"/></factorypath>
-	 ]]>
+kind="VARJAR" id="M2_REPO/com/sap/cloud/sdk/service/prov/annotation-processor/${cxs.rt.version}/annotation-processor-${cxs.rt.version}.jar"
+enabled="true" runInBatchMode="false"/></factorypath>
+ ]]>
 							</content>
 						</file>
 						<file>
@@ -62,63 +57,63 @@ org.eclipse.jdt.core.compiler.source=1.8
 					</additionalConfig>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.6</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
-				<configuration>
-					<wtpversion>2.0</wtpversion>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-					<projectNameTemplate>[artifactId]-[version]</projectNameTemplate>
-				</configuration>
-			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-			</resource>
-		</resources>
 	</build>
+	<properties>
+		<javax.version>3.1.0</javax.version>
+		<cxs.version>1.1.3</cxs.version>
+		<xsa.version>1.7.4</xsa.version>
+		<sfin.version>0.0.9</sfin.version>
+	</properties>
 	<dependencies>
+		<!-- OData provisioning dependencies -->
+		<dependency>
+			<groupId>com.sap.cloud.servicesdk.prov</groupId>
+			<artifactId>core-prov</artifactId>
+			<version>${cxs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.cloud.servicesdk.prov</groupId>
+			<artifactId>odatav4-prov</artifactId>
+			<version>${cxs.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.cloud.servicesdk.prov</groupId>
+			<artifactId>annotation-processor</artifactId>
+			<version>${xsa.version}</version>
+		</dependency>
+		<!-- CDS Consumption dependencies -->
+		<dependency>
+			<groupId>com.sap.cloud.servicesdk</groupId>
+			<artifactId>hana-connectivity-cds</artifactId>
+			<version>${cxs.version}</version>
+		</dependency>
+		<!-- V2 Consumption dependencies -->
+		<dependency>
+			<groupId>com.sap.cloud.servicesdk</groupId>
+			<artifactId>odata-v2-connectivity-dependencies</artifactId>
+			<version>${cxs.version}</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.cloud.servicesdk.cloudplatform</groupId>
+			<artifactId>scp-cf</artifactId>
+			<version>${sfin.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
+			<version>${javax.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- SAP Gateway Runtime, provides OData services -->
-		<dependency>
-			<groupId>com.sap.cloud.servicesdk.prov</groupId>
-			<artifactId>odatav2</artifactId>
-			<version>${sap.gateway.version}</version>
-			<type>pom</type>
-		</dependency>
-		<!--Dependencies for multitenancy support -->
-		<!--dependency>
-			<groupId>com.sap.cloud.servicesdk.prov</groupId>
-			<artifactId>multitenant</artifactId>
-			<version>${sap.gateway.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sap.db.jdbc</groupId>
-			<artifactId>ngdbc</artifactId>
-			<version>2.2.0</version>
-		</dependency-->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
+			<version>1.7.7</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
+
 	<profiles >
 		<profile>
 			<activation>
@@ -131,6 +126,7 @@ org.eclipse.jdt.core.compiler.source=1.8
 				<plugins>
 					<plugin>
 						<artifactId>maven-war-plugin</artifactId>
+						<version>3.0.0</version>
 						<configuration>
 							<webResources>
 								<resource>
