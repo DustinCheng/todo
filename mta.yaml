@@ -1,0 +1,37 @@
+ID: todo
+_schema-version: '2.0'
+version: 0.0.1
+
+modules:
+ - name: hdb
+   type: hdb
+   path: hdb
+   requires:
+    - name: hdi_hdb
+
+
+ - name: java
+   type: java
+   path: java
+   parameters:
+      memory: 512M
+   provides:
+    - name: java_api
+      properties:
+         url: ${default-url}
+   requires:
+    - name: hdi_hdb
+      properties:
+         JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml:
+            {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+
+
+ - name: cds
+   type: cds
+   path: cds
+
+resources:
+ - name: hdi_hdb
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
