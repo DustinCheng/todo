@@ -3,12 +3,12 @@
 	"imports":
 	[{
 		"target_table": "todo.Task",
-		"souce_data": {"data_type": "CSV", "file_name" : "tasks.csv", "has_header": false},
+		"source_data": {"data_type": "CSV", "file_name" : "tasks.csv", "has_header": false},
 		"import_settings": {"import_columns": ["id","title","note"]},
 		"column_mappings": {"id" : 1, "title" : 2, "note" : 3}
 	},{
 		"target_table": "todo.SubTask",
-		"souce_data": {"data_type": "CSV", "file_name" : "subtask.csv", "has_header": false},
+		"source_data": {"data_type": "CSV", "file_name" : "subtask.csv", "has_header": false},
 		"import_settings": {"import_columns": ["id","taskId","content"]},
 		"column_mappings": {"id": 1, "title": 2,"note": 3}
 	}]
