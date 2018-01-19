@@ -11,9 +11,9 @@ context todo {
 
     /*@@layout{"layoutInfo":{"x":477,"y":176.5}}*/
     entity SubTask {
-        key id      : String(10) not null;
-        key taskId  : String(10) not null;
-            content : String(10) not null;
-            status  : Integer    default 0;
+        key id      : String(10)  not null;
+        key taskId  : String(10)  not null;
+            content : String(100) not null;
+            status  : Integer     default 0;
     };
 };
